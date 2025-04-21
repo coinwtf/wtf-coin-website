@@ -1,39 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WTF Coin 🚀</title>
-    <style>
-        body { font-family: 'Comic Sans MS', cursive, sans-serif; text-align: center; background-color: #111; color: #ffcc00; }
-        h1 { font-size: 4rem; text-shadow: 3px 3px #ff4500; }
-        .container { max-width: 700px; margin: auto; padding: 30px; border: 3px solid #ff4500; border-radius: 15px; background: rgba(255, 69, 0, 0.2); }
-        .btn { display: inline-block; margin: 15px; padding: 12px 25px; background: #ff4500; color: #fff; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.2rem; cursor: pointer; border: none; }
-        .btn:hover { background: #ff6347; transform: scale(1.1); transition: 0.2s; }
-        .meme { margin-top: 20px; }
-        .meme img { border: 3px solid #ffcc00; border-radius: 10px; }
-        .launch-date { font-size: 1.5rem; margin-top: 30px; background: #222; padding: 15px; border-radius: 10px; border: 2px dashed #ffcc00; }
-    </style>
+  <meta charset="UTF-8">
+  <title>$WTF Coin Launch Countdown</title>
+  <style>
+    body {
+      background-color: #ff6600;
+      color: #fff;
+      font-family: 'Helvetica', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 50px;
+      margin-top: 30px;
+      color: #fff;
+    }
+
+    .logo {
+      margin-top: 30px;
+    }
+
+    .logo img {
+      width: 200px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #00000055;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 72px;
+      font-weight: bold;
+      color: #ffff00;
+      margin-top: 40px;
+    }
+
+    .unit {
+      margin: 0 25px;
+    }
+
+    .label {
+      font-size: 18px;
+      display: block;
+      color: #fff;
+    }
+
+    .now {
+      font-size: 100px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-top: 100px;
+    }
+
+    .subtitle {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🚀 WTF Coin 🚀</h1>
-        <p><strong>The most ridiculous, useless, and insane memecoin ever!</strong></p>
-        <a class="btn" href="https://x.com/RealWTFcoin" target="_blank">🐦 Follow on Twitter/X</a>
 
-        <div class="launch-date">
-            🎉 Launching April 21, 2025 — Get ready for the chaos! 🔥
-        </div>
+  <div class="logo">
+    <img src="https://pbs.twimg.com/profile_images/1908082317693779968/UJ00KIFg_400x400.jpg" alt="WTF Coin Logo">
+  </div>
 
-        <h2>🔥 Why $WTF?</h2>
-        <p>🤯 No roadmap, no promises, only pure chaos!</p>
-        <p>💰 Massive airdrops – because why not?</p>
-        <p>🗳️ WTF DAO – community decides the next absurd move!</p>
+  <h1>🚨 WTF COIN IS COMING 🚨</h1>
+  <div class="subtitle">Get ready for maximum chaos 🤯💥🚀</div>
 
-        <h2>🤡 Meme of the Day</h2>
-        <div class="meme">
-            <img src="https://i.imgur.com/yVx8uER.png" alt="WTF Meme" width="100%">
-        </div>
-    </div>
+  <div class="countdown" id="countdown">
+    <div class="unit"><span id="hours">--</span><span class="label">HOURS</span></div>
+    <div class="unit"><span id="minutes">--</span><span class="label">MINUTES</span></div>
+    <div class="unit"><span id="seconds">--</span><span class="label">SECONDS</span></div>
+  </div>
+
+  <div class="now" id="nowMessage" style="display: none;">💥 IT’S WTF TIME 💥</div>
+
+  <script>
+    const launchDate = new Date("April 21, 2025 16:00:00 UTC").getTime();
+
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    const countdownEl = document.getElementById("countdown");
+    const nowMessage = document.getElementById("nowMessage");
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance <= 0) {
+        countdownEl.style.display = "none";
+        nowMessage.style.display = "block";
+        return;
+      }
+
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
 </body>
 </html>
